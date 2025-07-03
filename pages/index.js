@@ -44,42 +44,78 @@ export default function Home() {
 
 
   return (
-    <div style={{ padding: "2rem" }}>
-      <h1>📈 Smart News + Portfolio Insights</h1>
+  <div style={{ maxWidth: "800px", margin: "auto", padding: "2rem", fontFamily: "Arial" }}>
+    <h1 style={{ textAlign: "center", fontSize: "2rem" }}>📈 Smart News + Portfolio Insights</h1>
 
-      <h2>General Stock Market News (India)</h2>
+    <section style={{ marginTop: "2rem" }}>
+      <h2>📰 General Stock Market News (India)</h2>
       <ul>
         {news.map((n, i) => (
-          <li key={i}>{n.title}</li>
+          <li key={i} style={{ marginBottom: "0.5rem" }}>{n.title}</li>
         ))}
       </ul>
+    </section>
 
-      <h2>Enter Your Portfolio (e.g., TCS, INFY, RELIANCE)</h2>
+    <section style={{ marginTop: "2rem" }}>
+      <h2>📊 Enter Your Portfolio (e.g., HDB, RBL, INFY)</h2>
       <input
         type="text"
         value={portfolio}
         onChange={(e) => setPortfolio(e.target.value)}
-        style={{ width: "100%", padding: "0.5rem", marginBottom: "1rem" }}
+        placeholder="e.g., HDB, RBL, INFY"
+        style={{
+          width: "100%",
+          padding: "0.75rem",
+          marginBottom: "1rem",
+          borderRadius: "6px",
+          border: "1px solid #ccc",
+          fontSize: "1rem"
+        }}
       />
-      <button onClick={handleAnalyze}>Analyze</button>
+      <button
+        onClick={handleAnalyze}
+        style={{
+          padding: "0.75rem 1.5rem",
+          backgroundColor: "#0070f3",
+          color: "#fff",
+          border: "none",
+          borderRadius: "6px",
+          cursor: "pointer",
+          fontSize: "1rem"
+        }}
+      >
+        Analyze
+      </button>
+    </section>
 
-      {filteredNews.length > 0 && (
-        <>
-          <h2>🧠 Filtered News Related to Your Portfolio</h2>
-          <ul>
-            {filteredNews.map((n, i) => (
-              <li key={i}>{n.title}</li>
-            ))}
-          </ul>
-        </>
-      )}
+    {filteredNews.length > 0 && (
+      <section style={{ marginTop: "2rem" }}>
+        <h2>🧠 Filtered News Related to Your Portfolio</h2>
+        <ul>
+          {filteredNews.map((n, i) => (
+            <li key={i} style={{ marginBottom: "0.5rem" }}>{n.title}</li>
+          ))}
+        </ul>
+      </section>
+    )}
 
-      {analysis && (
-        <>
-          <h2>🤖 AI Analysis</h2>
-          <pre>{analysis}</pre>
-        </>
-      )}
-    </div>
-  );
+    {analysis && (
+      <section style={{ marginTop: "2rem" }}>
+        <h2>🤖 AI Analysis</h2>
+        <pre
+          style={{
+            background: "#f4f4f4",
+            padding: "1rem",
+            borderRadius: "6px",
+            whiteSpace: "pre-wrap",
+            fontFamily: "inherit"
+          }}
+        >
+          {analysis}
+        </pre>
+      </section>
+    )}
+  </div>
+);
+
 }
