@@ -7,6 +7,7 @@ export default async function handler(req, res) {
     );
     res.status(200).json(response.data.articles);
   } catch (error) {
+    console.error("News API error:", error.message); // <-- This line solves the ESLint warning
     res.status(500).json({ error: "Failed to fetch news" });
   }
 }
